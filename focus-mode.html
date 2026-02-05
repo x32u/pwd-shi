@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Focus Mode tool enabled - Distraction-free reading">
+  <title>Focus Mode - Storybook Buddy</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Focus Mode Styles - Hide distractions */
+    body {
+      background: #1a1a2e;
+      background-image: none;
+    }
+    
+    .phone-frame {
+      max-width: 100%;
+    }
+    
+    .book-card {
+      border-radius: 0;
+      box-shadow: none;
+      background: #16213e;
+    }
+    
+    .book-card-header {
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      border-bottom-color: rgba(255,255,255,0.1);
+    }
+    
+    .book-card:hover .book-card-header {
+      opacity: 1;
+    }
+    
+    .book-card-header h1,
+    .book-card-header .page-indicator {
+      color: rgba(255,255,255,0.8);
+    }
+    
+    .active-tools {
+      display: none;
+    }
+    
+    .book-card-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-xl);
+    }
+    
+    .illustration-block {
+      background: linear-gradient(135deg, #0f3460 0%, #16213e 100%);
+      border: 2px solid rgba(255,255,255,0.1);
+    }
+    
+    .story-text {
+      color: #eaf6ff;
+      text-align: center;
+      max-width: 320px;
+    }
+    
+    .story-text p {
+      margin-bottom: var(--space-lg);
+    }
+    
+    .story-text .highlight {
+      background: linear-gradient(135deg, #e94560 0%, #ff6b6b 100%);
+      color: white;
+    }
+    
+    .book-card-footer {
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      border-top-color: rgba(255,255,255,0.1);
+    }
+    
+    .book-card:hover .book-card-footer {
+      opacity: 1;
+    }
+    
+    .nav-bottom .page-indicator {
+      color: rgba(255,255,255,0.6);
+    }
+    
+    .nav-bottom .btn {
+      background: rgba(255,255,255,0.1);
+      border-color: rgba(255,255,255,0.2);
+      color: white;
+    }
+    
+    .tool-hint {
+      position: fixed;
+      bottom: 120px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(255,255,255,0.1);
+      color: rgba(255,255,255,0.8);
+      padding: var(--space-sm) var(--space-lg);
+      border-radius: var(--radius-lg);
+      font-size: var(--font-size-sm);
+      font-weight: 600;
+      z-index: 101;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+    
+    /* Breathing animation for calm feel */
+    .illustration-block {
+      animation: breathe 4s ease-in-out infinite;
+    }
+    
+    @keyframes breathe {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.02); }
+    }
+  </style>
+</head>
+<body class="page-reader">
+  <div class="phone-frame">
+    <div class="book-card">
+      <!-- Book Card Header (hidden until hover) -->
+      <div class="book-card-header">
+        <a href="library.html" class="btn btn-icon" aria-label="Back to library">←</a>
+        <div class="book-card-header-center">
+          <h1>The Magic Garden</h1>
+          <span class="page-indicator">Page 1 of 12</span>
+        </div>
+        <a href="tools.html" class="btn btn-icon" aria-label="Magic tools">✨</a>
+      </div>
+
+      <!-- Active Tools Indicator (hidden in focus mode) -->
+      <div class="active-tools">
+        <span class="active-tools-label">Tools:</span>
+        <span class="tool-indicator" title="Focus Pointer">🔦</span>
+        <span class="tool-indicator" title="Line Ruler">📏</span>
+        <span class="tool-indicator" title="Text Sparkle">✨</span>
+        <span class="tool-indicator" title="Read Aloud">🔊</span>
+        <span class="tool-indicator" title="Bigger Text">🔤</span>
+        <span class="tool-indicator is-active" title="Focus Mode">🎯</span>
+      </div>
+
+      <!-- Book Card Content - Clean, centered -->
+      <div class="book-card-content">
+        <!-- Illustration -->
+        <div class="illustration-block">🌻🐰</div>
+
+        <!-- Story Text -->
+        <div class="story-text">
+          <p>Once upon a time, there was a little bunny named Rosie who loved to explore.</p>
+          <p>One sunny morning, Rosie <span class="highlight">hopped</span> through the meadow and found a hidden gate covered in flowers.</p>
+          <p>"What could be behind this gate?" Rosie wondered, her whiskers twitching with excitement.</p>
+        </div>
+      </div>
+
+      <!-- Book Card Footer Navigation (hidden until hover) -->
+      <div class="book-card-footer">
+        <div class="nav-bottom">
+          <button class="btn btn-icon" disabled aria-label="Previous page">←</button>
+          <span class="page-indicator">Page 1 of 12</span>
+          <a href="focus-mode.html" class="btn btn-icon" aria-label="Next page">→</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tool-hint">🎯 Focus Mode ON — hover to see controls</div>
+</body>
+</html>

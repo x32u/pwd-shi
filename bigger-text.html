@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Bigger Text tool enabled - Large readable text">
+  <title>Bigger Text - Storybook Buddy</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Bigger Text Styles */
+    .story-text {
+      font-size: 22px !important;
+      line-height: 1.9 !important;
+      font-family: Verdana, Geneva, sans-serif !important;
+      letter-spacing: 0.02em;
+    }
+    
+    .story-text p {
+      margin-bottom: var(--space-lg);
+    }
+    
+    .story-text .highlight {
+      font-size: inherit;
+      padding: 4px 8px;
+    }
+    
+    /* Size indicator */
+    .size-indicator {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+      background: var(--color-bg);
+      padding: var(--space-sm) var(--space-md);
+      border-radius: var(--radius-lg);
+      margin-bottom: var(--space-md);
+      font-size: var(--font-size-sm);
+      color: var(--color-text-light);
+    }
+    
+    .size-indicator .sizes {
+      display: flex;
+      gap: var(--space-xs);
+    }
+    
+    .size-indicator .size {
+      padding: var(--space-xs) var(--space-sm);
+      border-radius: var(--radius-sm);
+      font-weight: 700;
+    }
+    
+    .size-indicator .size.small {
+      font-size: 12px;
+      opacity: 0.5;
+    }
+    
+    .size-indicator .size.medium {
+      font-size: 16px;
+      opacity: 0.5;
+    }
+    
+    .size-indicator .size.large {
+      font-size: 20px;
+      background: var(--color-primary);
+      color: white;
+    }
+    
+    .tool-hint {
+      position: fixed;
+      bottom: 120px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--color-primary);
+      color: white;
+      padding: var(--space-sm) var(--space-lg);
+      border-radius: var(--radius-lg);
+      font-size: var(--font-size-lg);
+      font-weight: 600;
+      z-index: 101;
+    }
+  </style>
+</head>
+<body class="page-reader">
+  <div class="phone-frame">
+    <div class="book-card">
+      <!-- Book Card Header -->
+      <div class="book-card-header">
+        <a href="library.html" class="btn btn-icon" aria-label="Back to library">←</a>
+        <div class="book-card-header-center">
+          <h1>The Magic Garden</h1>
+          <span class="page-indicator">Page 1 of 12</span>
+        </div>
+        <a href="tools.html" class="btn btn-icon" aria-label="Magic tools">✨</a>
+      </div>
+
+      <!-- Active Tools Indicator -->
+      <div class="active-tools">
+        <span class="active-tools-label">Tools:</span>
+        <span class="tool-indicator" title="Focus Pointer">🔦</span>
+        <span class="tool-indicator" title="Line Ruler">📏</span>
+        <span class="tool-indicator" title="Text Sparkle">✨</span>
+        <span class="tool-indicator" title="Read Aloud">🔊</span>
+        <span class="tool-indicator is-active" title="Bigger Text">🔤</span>
+        <span class="tool-indicator" title="Focus Mode">🎯</span>
+      </div>
+
+      <!-- Book Card Content -->
+      <div class="book-card-content">
+        <!-- Size Indicator -->
+        <div class="size-indicator">
+          <span>Text Size:</span>
+          <div class="sizes">
+            <span class="size small">A</span>
+            <span class="size medium">A</span>
+            <span class="size large">A</span>
+          </div>
+        </div>
+
+        <!-- Illustration -->
+        <div class="illustration-block">🌻🐰</div>
+
+        <!-- Story Text - Bigger -->
+        <div class="story-text">
+          <p>Once upon a time, there was a little bunny named Rosie.</p>
+          <p>One sunny morning, Rosie <span class="highlight">hopped</span> through the meadow.</p>
+          <p>She found a hidden gate covered in flowers!</p>
+        </div>
+      </div>
+
+      <!-- Book Card Footer Navigation -->
+      <div class="book-card-footer">
+        <div class="nav-bottom">
+          <button class="btn btn-icon" disabled aria-label="Previous page">←</button>
+          <span class="page-indicator">Page 1 of 12</span>
+          <a href="bigger-text.html" class="btn btn-icon" aria-label="Next page">→</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tool-hint">🔤 Bigger Text ON</div>
+</body>
+</html>
