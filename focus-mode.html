@@ -7,116 +7,179 @@
   <title>Focus Mode - Storybook Buddy</title>
   <link rel="stylesheet" href="styles.css">
   <style>
-    /* Focus Mode Styles - Hide distractions */
-    body {
-      background: #1a1a2e;
+    /* Focus Mode Styles - Dark calming theme */
+    body.focus-mode-active {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
       background-image: none;
     }
     
-    .phone-frame {
+    .focus-mode-active .phone-frame {
       max-width: 100%;
     }
     
-    .book-card {
+    .focus-mode-active .book-card {
       border-radius: 0;
       box-shadow: none;
-      background: #16213e;
+      background: linear-gradient(180deg, #16213e 0%, #0f0f23 100%);
     }
     
-    .book-card-header {
+    /* Header - hidden by default, visible on hover */
+    .focus-mode-active .book-card-header {
       opacity: 0;
-      transition: opacity 0.3s ease;
+      transform: translateY(-10px);
+      transition: all 0.4s ease;
       border-bottom-color: rgba(255,255,255,0.1);
     }
     
-    .book-card:hover .book-card-header {
+    .focus-mode-active .focus-hover-zone:hover ~ .book-card .book-card-header,
+    .focus-mode-active .book-card:hover .book-card-header {
       opacity: 1;
+      transform: translateY(0);
     }
     
-    .book-card-header h1,
-    .book-card-header .page-indicator {
-      color: rgba(255,255,255,0.8);
+    .focus-mode-active .book-card-header h1,
+    .focus-mode-active .book-card-header .page-indicator {
+      color: rgba(255,255,255,0.9);
     }
     
-    .active-tools {
-      display: none;
-    }
-    
-    .book-card-content {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: var(--space-xl);
-    }
-    
-    .illustration-block {
-      background: linear-gradient(135deg, #0f3460 0%, #16213e 100%);
-      border: 2px solid rgba(255,255,255,0.1);
-    }
-    
-    .story-text {
-      color: #eaf6ff;
-      text-align: center;
-      max-width: 320px;
-    }
-    
-    .story-text p {
-      margin-bottom: var(--space-lg);
-    }
-    
-    .story-text .highlight {
-      background: linear-gradient(135deg, #e94560 0%, #ff6b6b 100%);
-      color: white;
-    }
-    
-    .book-card-footer {
-      opacity: 0;
-      transition: opacity 0.3s ease;
-      border-top-color: rgba(255,255,255,0.1);
-    }
-    
-    .book-card:hover .book-card-footer {
-      opacity: 1;
-    }
-    
-    .nav-bottom .page-indicator {
-      color: rgba(255,255,255,0.6);
-    }
-    
-    .nav-bottom .btn {
+    .focus-mode-active .book-card-header .btn {
       background: rgba(255,255,255,0.1);
       border-color: rgba(255,255,255,0.2);
       color: white;
     }
     
-    .tool-hint {
-      position: fixed;
-      bottom: 120px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: rgba(255,255,255,0.1);
-      color: rgba(255,255,255,0.8);
-      padding: var(--space-sm) var(--space-lg);
-      border-radius: var(--radius-lg);
-      font-size: var(--font-size-sm);
-      font-weight: 600;
-      z-index: 101;
-      border: 1px solid rgba(255,255,255,0.2);
+    .focus-mode-active .book-card-header .btn:hover {
+      background: rgba(255,255,255,0.2);
     }
     
-    /* Breathing animation for calm feel */
-    .illustration-block {
+    /* Hide active tools in focus mode */
+    .focus-mode-active .active-tools {
+      display: none;
+    }
+    
+    /* Content area - clean and centered */
+    .focus-mode-active .book-card-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-xl) var(--space-lg);
+      min-height: 400px;
+    }
+    
+    .focus-mode-active .illustration-block {
+      background: linear-gradient(135deg, #0f3460 0%, #16213e 100%);
+      border: 3px solid rgba(255,255,255,0.1);
       animation: breathe 4s ease-in-out infinite;
     }
     
+    .focus-mode-active .story-text {
+      color: #eaf6ff;
+      text-align: center;
+      max-width: 320px;
+      font-size: var(--font-size-lg);
+      line-height: 2;
+    }
+    
+    .focus-mode-active .story-text p {
+      margin-bottom: var(--space-xl);
+    }
+    
+    .focus-mode-active .story-text .highlight {
+      background: linear-gradient(135deg, #e94560 0%, #ff6b6b 100%);
+      color: white;
+      padding: 4px 10px;
+      border-radius: 8px;
+    }
+    
+    /* Footer - hidden by default, visible on hover */
+    .focus-mode-active .book-card-footer {
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all 0.4s ease;
+      border-top-color: rgba(255,255,255,0.1);
+    }
+    
+    .focus-mode-active .book-card:hover .book-card-footer {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .focus-mode-active .nav-bottom .page-indicator {
+      color: rgba(255,255,255,0.7);
+    }
+    
+    .focus-mode-active .nav-bottom .btn {
+      background: rgba(255,255,255,0.1);
+      border-color: rgba(255,255,255,0.2);
+      color: white;
+    }
+    
+    .focus-mode-active .nav-bottom .btn:hover {
+      background: rgba(255,255,255,0.2);
+    }
+    
+    /* Focus mode hint - properly positioned at bottom */
+    .focus-hint {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(139, 92, 246, 0.9);
+      color: white;
+      padding: var(--space-sm) var(--space-lg);
+      border-radius: var(--radius-pill);
+      font-size: var(--font-size-sm);
+      font-weight: 700;
+      z-index: 101;
+      box-shadow: 0 4px 20px rgba(139, 92, 246, 0.4);
+      animation: pulse-hint 3s ease-in-out infinite;
+    }
+    
+    @keyframes pulse-hint {
+      0%, 100% { opacity: 0.9; transform: translateX(-50%) scale(1); }
+      50% { opacity: 1; transform: translateX(-50%) scale(1.02); }
+    }
+    
+    /* Breathing animation for calm feel */
     @keyframes breathe {
       0%, 100% { transform: scale(1); }
       50% { transform: scale(1.02); }
     }
+    
+    /* Exit button for focus mode */
+    .exit-focus-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: rgba(255,255,255,0.15);
+      border: 2px solid rgba(255,255,255,0.3);
+      color: white;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      z-index: 102;
+      text-decoration: none;
+      opacity: 0.5;
+    }
+    
+    .exit-focus-btn:hover {
+      opacity: 1;
+      background: rgba(255,255,255,0.25);
+      transform: scale(1.1);
+    }
   </style>
 </head>
-<body class="page-reader">
+<body class="page-reader focus-mode-active">
+  <!-- Exit focus mode button -->
+  <a href="reader.html" class="exit-focus-btn" title="Exit Focus Mode">✕</a>
+  
   <div class="phone-frame">
     <div class="book-card">
       <!-- Book Card Header (hidden until hover) -->
@@ -164,6 +227,7 @@
     </div>
   </div>
 
-  <div class="tool-hint">🎯 Focus Mode ON — hover to see controls</div>
+  <!-- Focus Mode Hint -->
+  <div class="focus-hint">🎯 Focus Mode · Hover for controls</div>
 </body>
 </html>
